@@ -1,0 +1,11 @@
+model Post {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  title   String
+  description String
+  content String
+  authorId String @db.ObjectId
+  author   User?  @relation(fields: [authorId], references: [id], name: "UserPosts") 
+  createdAt  DateTime @default(now())
+}
+
+posts Post[] @relation("UserPosts")
